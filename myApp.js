@@ -1,10 +1,11 @@
 let express = require('express');
 let app = express();
 console.log("Hello World");
-//let htmlPath = __dirame + "/views/index.html";
-app.get("/", (req, res) => res.send("Hello Express"));
-/* app.get("/", express.static("/public/styles.css")) */
-
+let htmlPath = __dirname + "/views/index.html";
+//let htmlStyle = __dirname + "/public";
+/* app.get("/", (req, res) => res.send("Hello Express")); */
+app.get("/", (req, res)=>res.sendFile(htmlPath))
+app.use("/public",express.static(__dirname + "/public"))
 
 
 
