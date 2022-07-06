@@ -18,7 +18,6 @@ app.use("/public", express.static(htmlStyle))
     "message" : "Hello json"
   })
 }) */
-
 app.get("/json", (req, res) => { 
   let response = process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json"
   res.json(
@@ -26,7 +25,19 @@ app.get("/json", (req, res) => {
     "message": response
     })
 })
-
+//Chain Middleware to Create a Time Server
+//chain a middlwware to show time in url /now
+app.get("/now", (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+}, (req, res) => {
+  res.send({time : req.time})
+})
+//Get Route Parameter Input from the Client
+app.get("/:word/echo", (req,res,next) => {
+  let word = req.params.word;
+  res.send({echo:word})
+})
 
 
 
