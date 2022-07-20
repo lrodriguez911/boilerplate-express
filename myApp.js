@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 let absPathHtml = __dirname + "/views/index.html";
-let absPathPublic = __dirname + "/public";
+let absPathPublic = "/public";
 // meet node console
 console.log("Hello World");
 
@@ -13,8 +13,10 @@ console.log("Hello World");
 app.get("/", (req, res) => res.sendFile(absPathHtml))
 
 // server static assets
-app.use("/public",express.static("public"))
+app.use(absPathPublic,express.static("public"))
 
+//Serve JSON on a Specific Route
+app.get("/json" , (req, res) => res.json({"message": "Hello json"}))
 
 
 
