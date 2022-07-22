@@ -13,6 +13,12 @@ console.log("Hello World");
 /*app.get("/", (req, res) => res.send("Hello Express"))*/
 
 
+//Implement a Root-Level Request Logger Middleware
+app.use((req, res, next) =>{
+console.log(`${req.method} ${req.path} - ${req.ip}`)
+next()
+})
+
 //server an html file
 app.get("/", (req, res) => res.sendFile(absPathHtml))
 
@@ -30,6 +36,7 @@ app.get("/json", (req, res) =>
   })
 
 
+//Chain Middleware to Create a Time Server
 
 
 
