@@ -37,11 +37,23 @@ app.get("/json", (req, res) =>
 
 
 //Chain Middleware to Create a Time Server
+app.get("/now", (req, res, next) => {
+  req.time = new Date().toString();
+  next()
+}, (req, res) => res.send({time : req.time}))
 
 
+//Get Route Parameter Input from the Client
+app.get("/:word/echo", (req, res) => {
+  let {word} = req.params;
+  res.json({echo: word})
+})
 
-
-
+//Get Query Parameter Input from the Client
+app.route("/name").(req, res) => {
+  let {first: firstname, last : lastname} = req.query;
+  res.json({name : `${firstname} ${lastname}`})
+})
 
 
 
