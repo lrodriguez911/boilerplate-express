@@ -3,6 +3,10 @@ const app = express();
 let absPathHtml = __dirname + "/views/index.html";
 let absPathPublic = "/public";
 
+//Use body-parser to Parse POST Requests
+let bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: false}))
 //declare var to use env
 const mySecret = process.env.MESSAGE_STYLE;
 
@@ -52,7 +56,7 @@ app.get("/:word/echo", (req, res) => {
 })
 
 //Get Query Parameter Input from the Client
-app.route("/name", (req, res) => {
+app.route("/name").get((req, res) => {
   let {first: firstname, last : lastname} = req.query;
   res.json({name : `${firstname} ${lastname}`})
 })
