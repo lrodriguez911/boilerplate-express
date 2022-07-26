@@ -61,6 +61,11 @@ app.route("/name").get((req, res) => {
   res.json({name : `${firstname} ${lastname}`})
 })
 
+//Get Data from POST Requests
+  app.post("/name",(req, res) => 
+    res.json({name:`${req.body.first} ${req.body.last}`})
+          )
+
 
 
 
